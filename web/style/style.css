@@ -117,6 +117,23 @@ form{
 
 #Corrisponde{
     margin: 0 5px;
+    background-image: url(../images/exchanging-arrows.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px 35px;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
+#scelta{
+   margin: 0 5px; 
+}
 
+#sigla{
+    width: 60px;
+}
+
+#nome{
+    width: 190px;
+}

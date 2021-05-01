@@ -21,8 +21,6 @@ public class PostazioneMultimediale extends HttpServlet {
     private final String USER = "root";
     private final String PSW = "";
     private String query = "";
-    private Statement statement;
-    private ResultSet result;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 
@@ -39,16 +37,12 @@ public class PostazioneMultimediale extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String lista_aeroporti = "";
-        boolean check = false;
-        if (request.getParameter("Invia") != null) {
-            check = true;
-        }
+        String nome_compagnia = "";
         try (PrintWriter out = response.getWriter()) {
 
             query = "SELECT DISTINCT aeroporto FROM volo";
-
-            statement = connessione.createStatement();
-            result = statement.executeQuery(query);
+            Statement statement = connessione.createStatement();
+            ResultSet result = statement.executeQuery(query);
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -75,97 +69,136 @@ public class PostazioneMultimediale extends HttpServlet {
                     + "<option value=\"partenze\">Partenze</option>\n"
                     + "<option value=\"arrivi\">Arrivi</option>\n"
                     + "</select>\n"
-                    + "<input class=\"button\" type=\"submit\" value=\"Cerca\" name=\"Invia\">\n"
+                    + "<input class=\"button\" type=\"submit\" value=\"Cerca\" name=\"Cerca\">\n"
                     + "</form>");
             out.println("<form id=\"codNome\" action=\"PostazioneMultimediale\" method=\"POST\">"
-                    + "<input type=\"text\" name=\"sigla\" placeholder=\"Sigla\">\n"
+                    + "<input type=\"text\" id=\"sigla\" name=\"sigla\" placeholder=\"Sigla\">\n"
                     + "<input type=\"submit\" class=\"button\" id=\"Corrisponde\" name=\"Corrisponde\" value=\"Corrisponde\">"
-                    + "<input type=\"text\" name=\"nome\" placeholder=\"Nome\">"
+                    + "<input type=\"text\" id=\"nome\" name=\"nome\" placeholder=\"Nome aeroporto\" value=\"\">"
                     + "</div>");
-            if (check == true) {
-                String aeroporto = request.getParameter("aeroporto");
-                if (!aeroporto.equals("")) {
-                    String scelta = request.getParameter("scelta");
-                    query = "SELECT compagnia, codice_volo, partenza, arrivo FROM volo WHERE aeroporto = '" + aeroporto + "' ORDER BY partenza";
-                    statement = connessione.createStatement();
-                    result = statement.executeQuery(query);
-                    String nome_compagnia = "";
-                    switch (scelta) {
-                        case "tutti":
-                            out.println("<table>");
-                            out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Partenza</th><th>Arrivo</th>");
 
-                            while (result.next()) {
-                                String id = result.getString(1);
-                                PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
-                                prepared.setString(1, id);
-                                prepared.execute();
-                                ResultSet rs = prepared.getResultSet();
-                                while (rs.next()) {
-                                    nome_compagnia = rs.getString("nome_compagnia");
-                                }
-                                out.println("<tr>"
-                                        + "<td>" + result.getString(2) + "</td>"
-                                        + "<td>" + nome_compagnia + "</td>"
-                                        + "<td>" + result.getString(3) + "</td>"
-                                        + "<td>" + result.getString(4) + "</td>"
-                                        + "</tr>");
+            String aeroporto = request.getParameter("aeroporto");
+            String scelta = request.getParameter("scelta");
+            if (aeroporto != null && scelta != null) {
+                query = "SELECT compagnia, codice_volo, partenza, arrivo FROM volo WHERE aeroporto = '" + aeroporto + "' ORDER BY partenza";
+                Statement statement1 = connessione.createStatement();
+                ResultSet result1 = statement1.executeQuery(query);
+                switch (scelta) {
+                    case "tutti":
+                        out.println("<table>");
+                        out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Partenza</th><th>Arrivo</th>");
+                        while (result1.next()) {
+                            String id = result1.getString(1);
+                            PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
+                            prepared.setString(1, id);
+                            prepared.execute();
+                            ResultSet rs = prepared.getResultSet();
+                            while (rs.next()) {
+                                nome_compagnia = rs.getString("nome_compagnia");
                             }
-                            out.println("</table>");
-                            break;
-                        case "partenze":
-                            out.println("<table>");
-                            out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Partenza</th>");
+                            out.println("<tr>"
+                                    + "<td>" + result1.getString(2) + "</td>"
+                                    + "<td>" + nome_compagnia + "</td>"
+                                    + "<td>" + result1.getString(3) + "</td>"
+                                    + "<td>" + result1.getString(4) + "</td>"
+                                    + "</tr>");
+                        }
+                        out.println("</table>");
+                        break;
+                    case "partenze":
+                        out.println("<table>");
+                        out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Partenza</th>");
 
-                            while (result.next()) {
-                                String id = result.getString(1);
-                                PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
-                                prepared.setString(1, id);
-                                prepared.execute();
-                                ResultSet rs = prepared.getResultSet();
-                                while (rs.next()) {
-                                    nome_compagnia = rs.getString("nome_compagnia");
-                                }
-                                out.println("<tr>"
-                                        + "<td>" + result.getString(2) + "</td>"
-                                        + "<td>" + nome_compagnia + "</td>"
-                                        + "<td>" + result.getString(3) + "</td>"
-                                        + "</tr>");
+                        while (result1.next()) {
+                            String id = result1.getString(1);
+                            PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
+                            prepared.setString(1, id);
+                            prepared.execute();
+                            ResultSet rs = prepared.getResultSet();
+                            while (rs.next()) {
+                                nome_compagnia = rs.getString("nome_compagnia");
                             }
-                            out.println("</table>");
-                            break;
-                        case "arrivi":
-                            out.println("<table>");
-                            out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Arrivo</th>");
+                            out.println("<tr>"
+                                    + "<td>" + result1.getString(2) + "</td>"
+                                    + "<td>" + nome_compagnia + "</td>"
+                                    + "<td>" + result1.getString(3) + "</td>"
+                                    + "</tr>");
+                        }
+                        out.println("</table>");
+                        break;
+                    case "arrivi":
+                        out.println("<table>");
+                        out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Arrivo</th>");
 
-                            while (result.next()) {
-                                String id = result.getString(1);
-                                PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
-                                prepared.setString(1, id);
-                                prepared.execute();
-                                ResultSet rs = prepared.getResultSet();
-                                while (rs.next()) {
-                                    nome_compagnia = rs.getString("nome_compagnia");
-                                }
-                                out.println("<tr>"
-                                        + "<td>" + result.getString(2) + "</td>"
-                                        + "<td>" + nome_compagnia + "</td>"
-                                        + "<td>" + result.getString(4) + "</td>"
-                                        + "</tr>");
+                        while (result1.next()) {
+                            String id = result1.getString(1);
+                            PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
+                            prepared.setString(1, id);
+                            prepared.execute();
+                            ResultSet rs = prepared.getResultSet();
+                            while (rs.next()) {
+                                nome_compagnia = rs.getString("nome_compagnia");
                             }
-                            out.println("</table>");
-                            break;
-                        default:
-                            break;
-                    }
+                            out.println("<tr>"
+                                    + "<td>" + result1.getString(2) + "</td>"
+                                    + "<td>" + nome_compagnia + "</td>"
+                                    + "<td>" + result1.getString(4) + "</td>"
+                                    + "</tr>");
+                        }
+                        out.println("</table>");
+                        break;
+                    default:
+                        break;
                 }
+            } else {
+                query = "SELECT compagnia, codice_volo, partenza, arrivo FROM volo ORDER BY partenza";
+                Statement statement2 = connessione.createStatement();
+                ResultSet result2 = statement2.executeQuery(query);
+                out.println("<table>");
+                out.println("<tr><th>Codice Volo</th><th>Compagnia</th><th>Partenza</th><th>Arrivo</th>");
+
+                while (result2.next()) {
+                    String id = result2.getString(1);
+                    PreparedStatement prepared = connessione.prepareStatement("SELECT nome_compagnia FROM compagnia WHERE id_compagnia = ?");
+                    prepared.setString(1, id);
+                    prepared.execute();
+                    ResultSet rs = prepared.getResultSet();
+                    while (rs.next()) {
+                        nome_compagnia = rs.getString("nome_compagnia");
+                    }
+                    out.println("<tr>"
+                            + "<td>" + result2.getString(2) + "</td>"
+                            + "<td>" + nome_compagnia + "</td>"
+                            + "<td>" + result2.getString(3) + "</td>"
+                            + "<td>" + result2.getString(4) + "</td>"
+                            + "</tr>");
+                }
+                out.println("</table>");
+            }
+            String sigla = request.getParameter("sigla");
+            String nome = request.getParameter("nome");
+            String nomeCorr="";
+            if (sigla != null) {
+                query = "SELECT DISTINCT aeroporto FROM volo WHERE sigla = '" + sigla + "'";
+                Statement statement3 = connessione.createStatement();
+                ResultSet result3 = statement3.executeQuery(query);
+                while (result3.next()) {
+                    nomeCorr = result3.getString(1);
+                }
+                if(nomeCorr.equals("")){
+                    nomeCorr = "Inesistente";
+                }
+                out.println("<script>\n"
+                        + "document.getElementById(\"nome\").value = \"" + nomeCorr + "\";\n"
+                        + "document.getElementById(\"sigla\").value = \"" + sigla + "\";\n"     
+                        + "</script>");
             }
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -179,8 +212,10 @@ public class PostazioneMultimediale extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(PostazioneMultimediale.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostazioneMultimediale.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -197,8 +232,10 @@ public class PostazioneMultimediale extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(PostazioneMultimediale.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PostazioneMultimediale.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
