@@ -9,7 +9,7 @@
         <script src="js/app.js"></script>
     </head>
     <body>
-        <%@include file="config/menu.html" %>
+        <%@include file="config/menu.jsp" %>
         <h1>Benvenuto sul sito dell'aeroporto di Cagliari!</h1>
     </body>
 </html>

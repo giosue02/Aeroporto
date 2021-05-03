@@ -42,6 +42,18 @@ th {
     padding-right: 30px;
 }
 
+.rightTable{
+    flex: 30%;
+    padding-left: 5px;
+    padding-right: 30px;
+}
+
+.leftTable{
+    flex: 70%;
+    padding-left: 5px;
+    padding-right: 30px;
+}
+
 a{
     text-decoration: none;
     white-space: nowrap;
@@ -74,10 +86,6 @@ a:hover{
     color: #007bff;
 }
 
-.formContainer{
-    padding-bottom: 20px;
-}
-
 .button {
   background-color: #4CAF50;
   color: white;
@@ -86,7 +94,6 @@ a:hover{
   text-align: center;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   border-radius: 7px;
 }
@@ -94,29 +101,51 @@ a:hover{
 select{
     padding: 8px 16px;
     font-size: 16px;
-    border-radius: 7px 7px 0px 0px;
+    border-radius: 7px;
 }
 
 input{
     padding: 8px 16px;
     font-size: 16px;
     border-radius: 7px;
+    border: 1px solid black;
 }
 
-form{
+.formContainer{
+    padding-bottom: 20px;
+    text-align: center;
     display: inline-block;
+    width: 100%;
+}
+
+#PartenzeArrivi{
+    float: left;
+}
+
+#searchContainer{
+    float: left;
+}
+
+#codVolo{
+    display: inline-block;
+    margin-left: 3vw;
 }
 
 #codNome{
     float: right;
 }
 
-#codNome > input{
-    border: 1px solid;
+#Cerca{
+    margin-left: 2px;
+}
+
+#CercaCodVolo{
+    margin-left: 5px;
 }
 
 #Corrisponde{
-    margin: 0 5px;
+    margin-right: 5px;
+    margin-left: 5px;
     background-image: url(../images/exchanging-arrows.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -127,13 +156,55 @@ form{
 }
 
 #scelta{
-   margin: 0 5px; 
+   margin-left: 5px; 
 }
 
 #sigla{
-    width: 60px;
+    width: 100px;
 }
 
 #nome{
     width: 190px;
+}
+
+.editCompany, .editFlight{
+    background-image: url(../images/edit.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 33px 33px;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.editCompany:hover, .editFlight:hover{
+    cursor: pointer;
+}
+
+.delCompany, .delFlight{
+    background-image: url(../images/trash.ico);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px 25px;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.delCompany:hover, .delFlight:hover{
+    cursor: pointer;
+}
+
+.centered{
+    text-align:center;
 }

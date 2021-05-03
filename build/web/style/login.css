@@ -1,0 +1,110 @@
+html{
+    background: lightskyblue;
+    font-family: "Trebuchet MS";
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 9px;
+    width: 300px;
+    border: 2px solid gray;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    background: deepskyblue;
+    font-family: "Trebuchet MS";
+    font-size: 18px;
+}
+
+.buttons:hover {
+    border-radius: 15px;
+    transition: all 0.3s ease 0s;
+}
+
+.buttons:active{
+    top:0.1em;
+}
+
+@media all and (max-width:30em){
+.buttons{
+    display:block;
+    margin:0.4em auto;
+    }
+}
+
+#title{
+    background: deepskyblue;
+    border-radius: 8px 8px 0px 0px;
+}
+
+#container{
+    background: white;
+    margin-top: 100px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: 340px;
+}
+
+input{
+    outline: none;
+    max-width: 280px;
+    color: #333;
+}
+
+span{
+    margin: 0 10px;
+    color: #aaa;
+    cursor: pointer;
+    visibility: hidden;
+    user-select: none;
+}
+
+.material-icons{
+    margin-left: 290px;
+    margin-top: -30px;
+    position: absolute;
+}
+
+#info{
+    font-family: "Trebuchet MS";
+    font-size: 90%;
+    text-align: left;
+    display: block;
+    color:black;
+}
+
+#note{
+    font-family: "Trebuchet MS";
+    font-size: 90%;
+    white-space: pre;
+    text-align: left;
+    display: block;
+    margin-top: -10px;
+    color: red;
+}
+
+#buttons{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#login, #annulla{
+    cursor: pointer;
+}
+
+#login{
+    margin-right: 70px;
+}
+
+#annulla{
+    margin-right: 25px;
+    text-decoration: none;
+}
+

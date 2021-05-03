@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -55,7 +54,7 @@ public class Tabellone extends HttpServlet {
             out.println("<link rel=\"stylesheet\" href=\"style/style.css\">");
             out.println("</head>");
             out.println("<body>");
-            request.getRequestDispatcher("config/menu.html").include(request, response);
+            request.getRequestDispatcher("config/menu.jsp").include(request, response);
             out.println("<div class='tablesContainer'>");
             out.println("<div class='singleTable'>");
             out.println("<h1>Partenze</h1>");
