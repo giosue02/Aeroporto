@@ -6,7 +6,7 @@
     <a href="Tabellone">Tabellone orari</a>
     <a href="PostazioneMultimediale">Postazione multimediale</a>
     <a href="ComputerCentrale">Computer centrale</a>
-    <a href="config/logout.jsp">Logout</a>
+    <a href="config/logout.jsp" class="logout">Logout</a>
 </div>
 <%
 } else {
@@ -15,6 +15,6 @@
     <a href="index.jsp">Home</a>
     <a href="Tabellone">Tabellone orari</a>
     <a href="PostazioneMultimediale">Postazione multimediale</a>
-    <a href="config/loginPage.jsp">Login</a>
+    <a href="config/loginPage.jsp" class="login">Login</a>
 </div>
 <% }%>

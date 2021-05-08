@@ -52,9 +52,9 @@ public class PostazioneMultimediale extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Postazione Multimediale</title>");
+            out.println("<link rel=\"stylesheet\" href=\"style/style.css\">");
             out.println("<script src=\"js/jquery-3.6.0.min.js\"></script>");
             out.println("<script src=\"js/app.js\"></script>");
-            out.println("<link rel=\"stylesheet\" href=\"style/style.css\">");
             out.println("</head>");
             out.println("<body>");
             request.getRequestDispatcher("config/menu.jsp").include(request, response);
@@ -77,8 +77,8 @@ public class PostazioneMultimediale extends HttpServlet {
                     + "<input class=\"button\" type=\"submit\" value=\"Cerca\" id=\"Cerca\" name=\"Cerca\">\n"
                     + "</form>");
             out.println("<form id=\"codVolo\" action=\"PostazioneMultimediale\" method=\"POST\">"
-                    + "<select id=\"codiceVolo\" name=\"codiceVolo\">\n"
-                    + "<option value\"\" selected disabled hidden>Seleziona cod. volo</option>");
+                    + "<select id=\"codiceVolo\" name=\"codiceVolo\" required>\n"
+                    + "<option value=\"\" selected disabled hidden>Seleziona cod. volo</option>");
             query = "SELECT DISTINCT codice_volo FROM volo";
             Statement statement5 = connessione.createStatement();
             ResultSet result5 = statement5.executeQuery(query);
