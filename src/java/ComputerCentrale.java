@@ -65,8 +65,9 @@ public class ComputerCentrale extends HttpServlet {
                 out.println("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js\"></script>");
                 out.println("<script src=\"js/app.js\"></script>");
                 out.println("</head>");
-                out.println("<body>");
+                out.println("<body style=\"line-height: 1.2;\">");
                 request.getRequestDispatcher("config/menu.jsp").include(request, response);
+                out.println("<div class=\"contenitore\">");
                 out.println("<div class=\"modal fade\" id=\"ModalAddFlight\" role=\"dialog\">\n"
                         + "\n"
                         + "    <div class=\"modal-dialog\">\n"
@@ -252,7 +253,7 @@ public class ComputerCentrale extends HttpServlet {
                         + "  </div>");
                 out.println("<div class='tablesContainer'>");
                 out.println("<div class='leftTable'>");
-                out.println("<h1 style='font-family: 'Blinker', sans-serif;'>Gestione voli</h1>");
+                out.println("<h1>Gestione voli</h1>");
                 out.println("<table>");
                 out.println("<tr><th>Sigla</th><th>Aeroporto</th><th>Compagnia</th><th>Codice volo</th><th>Partenza</th><th>Arrivo</th><th>Tipo</th><th class=\"centered\">Modifica</th><th class=\"centered\">Elimina</th>");
                 out.println("<tr><td colspan=\"9\" class=\"centered\"><button class=\"addFlight\"></button></td></tr>");
@@ -299,6 +300,7 @@ public class ComputerCentrale extends HttpServlet {
                             + "</tr>");
                 }
                 out.println("</table>");
+                out.println("</div>");
                 out.println("</div>");
                 out.println("</div>");
                 out.println("</body>");

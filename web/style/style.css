@@ -5,7 +5,6 @@
 }
 
 body {
-    padding: 15px;
     font-size: 16px;
     background-color: #f0f4fa;
 }
@@ -20,9 +19,29 @@ h1 {
     font-weight: bold;
 }
 
+.contenitore{
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
 .home{
     background: transparent;
 }
+
+.homeTxt{
+    background: aliceblue;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-top: 25vh;
+    border: 2px solid black;
+}
+
+.homeTxt>p{
+    font-size: 25px;  
+}
+
 
 .homeBg{
     background: url(../images/airport.jpg); 
@@ -79,60 +98,6 @@ th {
     flex: 70%;
     padding-left: 5px;
     padding-right: 30px;
-}
-
-a{
-    text-decoration: none;
-    white-space: nowrap;
-    font-size: 22px;
-    color: #007bff;
-    margin-bottom: 20px;
-    padding: 3px 5px 3px 5px;
-}
-
-a:hover{
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: #56a8ff;
-    color: white;
-}
-
-.currentPage {
-    padding: 3px 5px 3px 5px;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-}
-
-.currentPage:hover {
-    background-color: #007bff;
-}
-
-.menu{
-    margin-left: 2px;
-    color: #007bff;
-}
-
-a.logout {
-    color: #ff362f;
-}
-
-a.logout:hover {
-    text-decoration: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #ff645f;
-}
-
-a.login {
-    color: #1a8d16;
-}
-
-a.login:hover {
-    text-decoration: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #20791c;
 }
 
 .button {
@@ -298,4 +263,41 @@ button.addCompany, button.addFlight{
 
 #codicevolo{
     margin-left: -2px;
+}
+
+.db-choose-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 2.5rem;
+    user-select: none;
+}
+
+.db-choose {
+    display: inline-block;  
+    backdrop-filter: blur(3px);
+    overflow: hidden;
+    width: 45%;
+    height: 30%;
+    min-width: 425px;
+    min-height: 250px;
+    max-width: 500px;
+    max-height: 350px;
+    margin-bottom: 50px;
+    background-color: #ffffffd0;
+    color: #272727;
+    text-align: center;
+    word-wrap: break-word;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: transform .2s, filter .1s, box-shadow .2s;
+}
+
+.db-choose:first-child {
+    margin-right: 4%;
+}
+
+.db-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.5rem;
+    padding: 0 10px;
 }

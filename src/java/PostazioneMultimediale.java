@@ -53,11 +53,13 @@ public class PostazioneMultimediale extends HttpServlet {
             out.println("<head>");
             out.println("<title>Postazione Multimediale</title>");
             out.println("<link rel=\"stylesheet\" href=\"style/style.css\">");
+            
             out.println("<script src=\"js/jquery-3.6.0.min.js\"></script>");
             out.println("<script src=\"js/app.js\"></script>");
             out.println("</head>");
             out.println("<body>");
             request.getRequestDispatcher("config/menu.jsp").include(request, response);
+            out.println("<div class=\"contenitore\">");
             out.println("<h1>Postazione multimediale</h1>");
             out.println("<div class=\"formContainer\">"
                     + "<div id=\"searchContainer\"><form id=\"PartenzeArrivi\" action=\"PostazioneMultimediale\" method=\"POST\">");
@@ -225,7 +227,7 @@ public class PostazioneMultimediale extends HttpServlet {
                 }
                 out.println("</table>");
             }
-            
+            out.println("</div>");
             String sigla = request.getParameter("sigla");
             String nomeAeroporto = request.getParameter("nomeAeroporto");
             String nomeCorr = "";
@@ -264,7 +266,7 @@ public class PostazioneMultimediale extends HttpServlet {
                 siglaGlob = siglaCorr;
                 nomeGlob = nomeAeroporto;
             }
-
+            
             out.println("</body>");
             out.println("</html>");
         }

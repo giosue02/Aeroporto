@@ -7,16 +7,16 @@ $(document).ready(function () {
                 $vett.splice($i, 1);
             }
         }
-        $('#menu a').each(function () {
+        $('#myTopnav a').each(function () {
             var $href = $(this).attr('href');
             var $length = $vett.length;
             if ($href === "index.jsp" && $vett[($length - 1)] === "Aeroporto") {
                 $href = "Aeroporto";
             }
             if ($page.includes($href)) {
-                $(this).addClass('currentPage');
+                $(this).addClass('active');
             } else {
-                $(this).removeClass('currentPage');
+                $(this).removeClass('active');
             }
         });
     });

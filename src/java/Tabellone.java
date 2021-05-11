@@ -55,6 +55,7 @@ public class Tabellone extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             request.getRequestDispatcher("config/menu.jsp").include(request, response);
+            out.println("<div class=\"contenitore\">");
             out.println("<div class='tablesContainer'>");
             out.println("<div class='singleTable'>");
             out.println("<h1>Partenze</h1>");
@@ -104,6 +105,7 @@ public class Tabellone extends HttpServlet {
                 + "</tr>");
             }
             out.println("</table>");
+            out.println("</div>");
             out.println("</div>");
             out.println("</div>");
             out.println("</body>");

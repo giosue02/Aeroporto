@@ -10,6 +10,6 @@
     </head>
     <body class="home">
         <%@include file="config/menu.jsp" %>
-        <h1>Benvenuto sul sito dell'aeroporto di Cagliari!</h1>
+        <div class="contenitore" style="text-align:center;"><div class="homeTxt"><h1>Aeroporto di Cagliari</h1><p>Benvenuto nei nostri servizi. Pianifica il tuo volo!</p><br><img src="images/airplane.png" width="100" height="100"></div></div>
     </body>
 </html>
